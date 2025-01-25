@@ -5,7 +5,7 @@ import aiofiles
 from fastapi import APIRouter, Depends, File, UploadFile, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.database import get_session
+from app.database import get_async_session
 from app.schemas import MediaFileCreate, MediaFile
 from app.crud import MediaFileDAL
 from app.cloud_storage import upload_to_cloud
@@ -17,7 +17,7 @@ get_media = APIRouter()
 
 
 @get_media.get("/{uid}")
-async def get_file(uid: str, db: AsyncSession = Depends(get_session)):
+async def get_file(uid: str, db: AsyncSession = Depends(get_async_session)):
     """Эндпоинт для получения файла по уникальному идентификатору."""
 
     try:
@@ -43,7 +43,7 @@ async def get_file(uid: str, db: AsyncSession = Depends(get_session)):
 
 @upload_media.post("/", response_model=MediaFile)
 async def upload_file(file: UploadFile = File(...),
-                      db: AsyncSession = Depends(get_session)):
+                      db: AsyncSession = Depends(get_async_session)):
     """Эндпоинт для загрузки файла."""
 
     try:

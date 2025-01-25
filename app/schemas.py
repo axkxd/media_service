@@ -2,7 +2,9 @@ from pydantic import BaseModel
 
 
 class MediaFileBase(BaseModel):
-    """Базовая модель для хранения информации о медиафайле."""
+    """
+    Базовая модель для хранения информации о медиафайле.
+    """
     filename: str
     file_size: int
     file_format: str
@@ -10,7 +12,9 @@ class MediaFileBase(BaseModel):
 
 
 class MediaFileCreate(MediaFileBase):
-    """Модель для создания нового медиафайла, наследует базовые атрибуты."""
+    """
+    Модель для создания нового медиафайла, наследует базовые атрибуты.
+    """
     pass
 
 
