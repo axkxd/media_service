@@ -75,13 +75,14 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8080
 ### Примеры запросов к API
 ## Загрузка файла
 
+```json
 POST /files/
-```bash
+
 curl -X POST "http://localhost:8080/files/" \
   -F "file=@/path/to/your/file.jpg"
 ```
 Ответ:
-```bash
+```json
 {
   "uid": "123e4567-e89b-12d3-a456-426614174000",
   "filename": "file.jpg"
@@ -90,8 +91,9 @@ curl -X POST "http://localhost:8080/files/" \
 
 ## Получение файла по UID
 
+```json
 GET /files/{uid}
-```bash
+
 curl "http://localhost:8080/files/123e4567-e89b-12d3-a456-426614174000"
 ```
 Ответ:
